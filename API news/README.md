@@ -12,7 +12,6 @@ lis nombres de las tablas tienen el `main_` antes del nombre del modelo todo en 
     - `main_media`
     - `main_new`
     - `main_rss_url`
-    - Item A
 
 
 ## Requerimientos
