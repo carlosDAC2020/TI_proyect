@@ -2,10 +2,11 @@
 Api de gestion de noticias por medio de RSS 
 
 ## Diagrama ER
-![](../imgs/Diagrama_ER%20.png)
+
 <div>
     <img src="../imgs/Diagrama_ER%20.png" alt="Descripción de la imagen 1" style="width: 500px;">  
 </div>
+
 lis nombres de las tablas tienen el `main_` antes del nombre del modelo todo en minuscula por ejemplo las tablas del diagrama serian :
     - `main_media`
     - `main_new`
