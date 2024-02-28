@@ -8,9 +8,12 @@ Api de gestion de noticias por medio de RSS
 </div>
 
 lis nombres de las tablas tienen el `main_` antes del nombre del modelo todo en minuscula por ejemplo las tablas del diagrama serian :
+
     - `main_media`
     - `main_new`
     - `main_rss_url`
+    - Item A
+
 
 ## Requerimientos
 - ***Obtencion de noticias:*** obten las noticias de los RSS y guardalas en la tabla news (***Trata de q esta ruta sea automatica cada 24horas***).
