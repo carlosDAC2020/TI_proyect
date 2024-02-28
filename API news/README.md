@@ -3,7 +3,13 @@ Api de gestion de noticias por medio de RSS
 
 ## Diagrama ER
 ![](../imgs/Diagrama_ER%20.png)
-lis nombres de las tablas y atributos son tal cual los de la base de datos
+<div>
+    <img src="../imgs/Diagrama_ER%20.png" alt="Descripción de la imagen 1" style="width: 500px;">  
+</div>
+lis nombres de las tablas tienen el `main_` antes del nombre del modelo todo en minuscula por ejemplo las tablas del diagrama serian :
+    - `main_media`
+    - `main_new`
+    - `main_rss_url`
 
 ## Requerimientos
 - ***Obtencion de noticias:*** obten las noticias de los RSS y guardalas en la tabla news (***Trata de q esta ruta sea automatica cada 24horas***).
