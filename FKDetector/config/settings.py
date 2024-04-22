@@ -75,6 +75,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+#Charly´s BD (credentials)
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -82,6 +84,18 @@ DATABASES = {
         'USER': 'rout',
         'PASSWORD': 'rout',
         'HOST': '', # direccion ip del contenedor de postgres
+        'PORT': '5432', # puerto expuesto del contenedor
+    }
+}
+"""
+#Harold´s BD (credentials)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'FKNDetector',
+        'USER': 'postgres',
+        'PASSWORD': 'navidad02',
+        'HOST': 'localhost', # direccion ip del contenedor de postgres
         'PORT': '5432', # puerto expuesto del contenedor
     }
 }

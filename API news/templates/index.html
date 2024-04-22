@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API News</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        #searchTitle {
+            font-size: 2em;
+            text-align: center;
+        }
+        #promptInput {
+            width: 60%;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+        #validateButton {
+            display: block;
+            margin-left: 10px;
+        }
+        #saveButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="searchTitle">Search</h1>
+        {% if num_noticias > 0 %}
+            <div class="row justify-content-center">
+                <div class="col-8 d-flex">
+                    <input type="text" id="promptInput" class="form-control m-2" placeholder="Ingrese el titular de la noticia">
+                    <button id="validateButton" class="btn btn-primary custom-btn m-2 bt">Validar</button>
+                </div>
+            </div>
+        {% else %}
+            <p>No hay noticias en la base de datos.</p>
+        {% endif %}
+    </div>
+
+
+
+
+
+    <button id="saveButton" class="btn btn-primary">Guardar</button>
+
+    <script>
+        document.getElementById('saveButton').addEventListener('click', function() {
+            fetch('/guardar_noticias', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        document.getElementById('validateButton').addEventListener('click', function() {
+            var titular_usuario = document.getElementById('promptInput').value;
+            fetch('/validar_titular', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ titular_usuario: titular_usuario })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
