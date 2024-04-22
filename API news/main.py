@@ -101,7 +101,7 @@ async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "num_noticias": num_noticias})
 
 # Ruta para manejar la solicitud de validar el titular de la noticia
-@app.post("/validar_titular")
+@app.post("/validate_prompt")
 async def validar_titular(data: dict):
     titular_usuario = data.get('titular_usuario')
     if titular_usuario:
@@ -114,8 +114,39 @@ async def validar_titular(data: dict):
         raise HTTPException(status_code=400, detail="No se proporcionó un titular válido.")
 
 # Ruta para manejar la solicitud de guardar noticias
-@app.post("/guardar_noticias")
+@app.post("/save_news")
 async def guardar_noticias():
     num_noticias_guardadas = buscar_y_guardar_noticias()
     message = f"{num_noticias_guardadas} noticias guardadas correctamente"
     return {"message": message, "num_noticias": num_noticias_guardadas}
+
+# Función para obtener todas las noticias por categoría
+def get_news_by_category():
+    categories_news = {}
+    db = SessionLocal()
+    for rss_url in db.query(MainRssUrl).all():
+        category = rss_url.category
+        if category not in categories_news:
+            categories_news[category] = []
+
+        media_id = rss_url.media_id
+        news = db.query(MainNew).filter(MainNew.media_id == media_id).all()
+
+        for new in news:
+            new_dict = {
+                "title": new.title,
+                "summary": new.summary,
+                "body": new.body,
+                "publication_date": new.publication_date,
+                "url": new.link_article,
+            }
+            categories_news[category].append(new_dict)
+    
+    db.close()
+    return categories_news
+
+# Ruta para obtener todas las noticias por categoría
+@app.get("/news_by_category")
+async def news_by_category():
+    categories_news = get_news_by_category()
+    return categories_news
