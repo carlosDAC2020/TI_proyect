@@ -1,0 +1,53 @@
+.card{
+    background-color: #14171A;
+}
+h4{
+    color:#F5F8FA;
+}
+h5{
+    color:#9a9fa2;
+}
+p{
+    color: #E1E8ED;
+}
+
+/* estilos cards rss*/
+.card-rss{
+    border-bottom: 4px solid var(--rss-color);
+    transition: box-shadow 0.3s ease; 
+}
+.card-rss:hover{
+    box-shadow: 0 0 20px var(--rss-color);
+}
+.bi-rss-fill{
+    color:var(--rss-color)
+}
+
+/* estilos cards x*/
+.card-x{
+    border-bottom: 4px solid var(--x-color);
+}
+.card-x:hover{
+    box-shadow: 0 0 20px var(--x-color);
+}
+.bi-twitter-x{
+    color: var(--x-color);
+}
+
+/* estilos cards reddit*/
+.card-reddit{
+    border-bottom: 4px solid var(--reddit-color);
+}
+.card-reddit:hover{
+    box-shadow: 0 0 20px var(--reddit-color);
+}
+.bi-reddit{
+    color: var(--reddit-color);
+}
+
+
+
+/*auxiliares de ubicacion */
+.hero{
+    border: 3px solid var(--primary-green);
+}

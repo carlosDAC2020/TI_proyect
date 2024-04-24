@@ -1,0 +1,230 @@
+
+<!--
+<header class="d-flex justify-content-center py-3 nav-container fixed-top ">
+    <ul class="nav nav-pills ">
+    <li class="nav-item"><a href="#" 
+    class="nav-link">Home</a></li>
+    <li class="nav-item"><a href="#news-now" class="nav-link">News Now</a></li>
+    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+    <li class="nav-item"><a href="#fonts-info" class="nav-link">Media</a></li>
+    <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+    </ul>
+</header>
+
+-->
+
+
+<section class="px-4 py-5 text-center hero-conten capa" style="margin-top: 0px;" id="hero">
+    <h1 class="display-1 fw-bold text-white ">FNK o otro</h1>
+    <h2 class="display-6 text-white">Tu Escudo contra las Noticias Falsas</h2>
+    <div class="row w-70 mx-auto input-new">
+        <div class="col-md-9  p-2">
+            <input class="form-control form-control-lg text-white input-send-new border-0" type="text" placeholder="Valida una noticia" aria-label=".form-control-lg example">
+        </div>
+        <div class="col-md-3 p-2">
+          <button type="button" class="btn btn-primary btn-send-input h-100 w-100 border-0">Validar</button>
+        </div>
+    </div>
+
+    <div class="container px-4 " id="custom-cards">
+    
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h3 class=" mt-5 mb-4  lh-1 fw-bold">caracterizacion</h3>
+                <p>njifsobgdsifhu ryrhfisuh9u0 rougriuogbisubgsa0ufbgsih v s98fbisuobvsahf ubioas fasuofb f0abvfuh af a0fauf 0a 8fy0 auh f0a fuga f80as fuh</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h3 class=" mt-5 mb-4  lh-1 fw-bold">contrastacion</h3>
+                <p>njifsobgdsifhu ryrhfisuh9u0 rougriuogbisubgsa0ufbgsih v s98fbisuobvsahf ubioas fasuofb f0abvfuh af a0fauf 0a 8fy0 auh f0a fuga f80as fuh</p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                <h3 class=" mt-5 mb-4  lh-1 fw-bold">validacion</h3>
+                <p>njifsobgdsifhu ryrhfisuh9u0 rougriuogbisubgsa0ufbgsih v s98fbisuobvsahf ubioas fasuofb f0abvfuh af a0fauf 0a 8fy0 auh f0a fuga f80as fuh</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="news-now px-5 py-5 " id="news-now">
+    <h2 class=" fw-bold text-white display-5">Noticias ahora</h2>
+    <div class="row  p-1 text-white  row-cols-lg-3">
+        <app-item-new
+        *ngFor="let item of allItems" 
+        [itemNew]="item"
+        />
+    </div>
+    <div class="row justify-content-center mx-auto w-50 mt-4">
+        <div class="col-md-5 text-center">
+            <button type="button" class="btn btn-primary btn-see-news">
+              <i class="bi bi-plus-lg display-4"></i>
+            </button>
+        </div>
+    </div>
+
+</section>
+
+@if (is_ti==false){
+  <section class="px-5 py-3 hero text-white"  id="fonts-info">
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+        <div class="col d-flex flex-column align-items-start gap-2">
+          <h2 class="fw-bold display-5">Fuentes de informacion </h2>
+          <p class="">Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+          <a href="#" class="btn btn-primary btn-lg">Primary button</a>
+        </div>
+  
+        <div class="col">
+          <div class="row row-cols-1 row-cols-sm-2 g-4">
+
+            <div class="col d-flex flex-column gap-2">
+              <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                <svg class="bi" width="1em" height="1em">
+                  <use xlink:href="#collection" />
+                </svg>
+              </div>
+              <h4 class="fw-semibold mb-0 ">Featured title</h4>
+              <p class="">Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+  
+            <div class="col d-flex flex-column gap-2">
+              <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                <svg class="bi" width="1em" height="1em">
+                  <use xlink:href="#gear-fill" />
+                </svg>
+              </div>
+              <h4 class="fw-semibold mb-0 ">Featured title</h4>
+              <p class="">Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+  
+            <div class="col d-flex flex-column gap-2">
+              <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                <svg class="bi" width="1em" height="1em">
+                  <use xlink:href="#speedometer" />
+                </svg>
+              </div>
+              <h4 class="fw-semibold mb-0 ">Featured title</h4>
+              <p class="">Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+</section>
+
+<section  class="about px-5 py-3 hero text-white"  id="blog">
+    <div class="container  py-5" id="custom-cards">
+        <h2 class="pb-2 display-5 fw-bold">Blog</h2>
+    
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">Fake News </h3>
+                <p>descripcion del articulo </p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">Era de post verdad</h3>
+                <p>descripcion del articulo </p>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                <h3 class="pt-5 mt-5 mb-4  lh-1 fw-bold">LTV el protocolo de la verdad</h3>
+                <p>descripcion del articulo </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row justify-content-center mx-auto w-50">
+            <div class="col-md-5 text-center">
+                <button type="button" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Conoce más</button>
+            </div>
+        </div>
+          
+    </div>
+</section>
+<div class="container">
+  <footer class="py-5 text-white">
+    <div class="row">
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 ">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-5 offset-md-1 mb-3">
+        <form>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of what's new and exciting from us.</p>
+          <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden">Email address</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+      <p>&copy; 2024 Company, Inc. All rights reserved.</p>
+      <ul class="list-unstyled d-flex">
+        <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+        <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+        <li class="ms-3"><a class="" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+}
+
+

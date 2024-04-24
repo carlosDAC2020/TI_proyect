@@ -1,0 +1,99 @@
+
+/* barra de navegacion*/
+.nav-container{
+    background: black;
+}
+.nav-link{
+    font-size: 20px;
+    font-weight: 50px;
+    color: var(--secondary-green);
+}
+.nav-link:hover{
+    color: var(--primary-green);
+    border-bottom:2px solid ;  
+}
+
+/* hero */
+.hero-conten{
+    background-image: url('../../assets/ccchaos.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.capa{
+    background-color: rgba(1, 1, 1, 0.975);
+}
+.hero{
+    border: 3px solid var(--primary-green);
+}
+.input-new{
+    width: 70%;
+    margin: 0 auto;
+}
+.input-send-new{
+    background-color: #444646;
+    color: beige;
+    border-radius: 40px;
+    animation: changeborders 1.5s infinite alternate; 
+}
+@keyframes changeborders {
+    0% { 
+        border: 4px solid var(--primary-green);
+        color: var(--primary-green);
+        box-shadow: 0 0 10px var(--primary-green);
+    } /* Primer color de fondo */
+    50% { 
+        border: 4px solid var(--secondary-green);
+        color: var(--secondary-green);
+        box-shadow: 0 0 10px var(--secondary-green);
+     } /* Segundo color de fondo */
+    100% { 
+        border: 4px solid var(#027333);
+        color: var(--#027333);
+        box-shadow: 0 0 10px var(--#027333);
+    } /* Tercer color de fondo */
+}
+
+.input-send-new::placeholder {
+    color: beige; 
+}
+.btn-send-input{
+    border-radius: 40px;
+    background-color: var(--secondary-green);
+}
+.btn-send-input:hover{
+    background-color: var(--primary-green);
+}
+
+/* estilo se seccion de news-now*/
+.news-now{
+    background-color: black;
+}
+.btn-see-news {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: black;
+    animation: changeColors 1.5s infinite alternate; 
+}
+
+@keyframes changeColors {
+    0% { 
+        border: 3px solid var(--rss-color);
+        color: var(--rss-color);
+        box-shadow: 0 0 10px var(--rss-color);
+    } /* Primer color de fondo */
+    50% { 
+        border: 3px solid var(--x-color);
+        color: var(--x-color);
+        box-shadow: 0 0 10px var(--x-color);
+     } /* Segundo color de fondo */
+    100% { 
+        border: 3px solid var(--reddit-color);
+        color: var(--reddit-color);
+        box-shadow: 0 0 10px var(--reddit-color);
+    } /* Tercer color de fondo */
+}
+.btn-see-news:hover {
+    transform: rotate(360deg); 
+    transition: transform 1s ease; 
+}
