@@ -1,0 +1,32 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+
+/* paleta de colores  */
+:root {
+    /* tonos de verde */
+    --primary-green: #04d939; 
+    --secondary-green: #03a63c; 
+    --deactive-green: #027333;
+    
+    /* tonos de azul */
+    --primary-blue: #0fc2c0; 
+    --secondary-blue: #008f8c; 
+
+    /* colres de referencias para fuentes de informacion */
+    --x-color:#1DA1F2;
+    --reddit-color:#FF4500;
+    --rss-color:var(--primary-green)
+}
+
+body {
+    font-family: "Kanit", sans-serif;
+    background-color: black; 
+    margin: 0%;
+    padding: 0%;
+}
+
+
+h1,h2{
+    color:white ;
+}
