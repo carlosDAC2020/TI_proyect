@@ -22,9 +22,7 @@
 .capa{
     background-color: rgba(1, 1, 1, 0.975);
 }
-.hero{
-    border: 3px solid var(--primary-green);
-}
+
 .input-new{
     width: 70%;
     margin: 0 auto;

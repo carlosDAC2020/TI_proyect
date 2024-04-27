@@ -1,5 +1,8 @@
 .card{
-    background-color: #14171A;
+    background-color: black;
+    border-top:2px solid #14171A;
+    border-left:2px solid #14171A;
+    border-right:2px solid #14171A;
 }
 h4{
     color:#F5F8FA;
@@ -19,9 +22,7 @@ p{
 .card-rss:hover{
     box-shadow: 0 0 20px var(--rss-color);
 }
-.bi-rss-fill{
-    color:var(--rss-color)
-}
+
 
 /* estilos cards x*/
 .card-x{
@@ -30,9 +31,7 @@ p{
 .card-x:hover{
     box-shadow: 0 0 20px var(--x-color);
 }
-.bi-twitter-x{
-    color: var(--x-color);
-}
+
 
 /* estilos cards reddit*/
 .card-reddit{
@@ -41,9 +40,7 @@ p{
 .card-reddit:hover{
     box-shadow: 0 0 20px var(--reddit-color);
 }
-.bi-reddit{
-    color: var(--reddit-color);
-}
+
 
 
 

@@ -12,7 +12,7 @@ class Media(models.Model):
 
 class Rss_url(models.Model):
     CATEGORY_CHOICES = [
-        ('politica', 'dolítica'),
+        ('politica', 'política'),
         ('deporte', 'deporte'),
         ('tecnologia', 'tecnologia'),
         ('economia', 'economia'),
@@ -35,11 +35,10 @@ class Rss_url(models.Model):
 
 class New(models.Model):
     title = models.CharField(max_length=200)
-    summary = models.TextField()
-    body = models.TextField()
+    summary = models.TextField(blank=True)
+    body = models.TextField(blank=True)
     publication_date = models.DateTimeField()
     link_article = models.URLField()
     media = models.ForeignKey(Media, on_delete=models.CASCADE)
-
     def __str__(self):
         return self.title

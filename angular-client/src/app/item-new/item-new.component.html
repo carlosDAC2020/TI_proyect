@@ -1,29 +1,29 @@
-@if (itemNew.type=="rss") {
+@if (itemNew.type_item=="rss") {
   <div class="col mb-3 rounded-4">
     <div class="card card-rss">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-8 ">
+            <div class="col-md-9 ">
               <h4 class="card-title">{{itemNew.title}}</h4>
+              <h5>{{itemNew.datePub}} / {{getDomainFromPage()}}</h5>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-3 text-center">
               <h1><i class="bi bi-rss-fill"></i></h1>
             </div>
           </div>
-          <h5>{{itemNew.page}} / {{itemNew.datePub}}</h5>
           <p class="card-text ">{{itemNew.bodyText}}</p>
         </div>
     </div>
   </div>
 } 
 
-@if (itemNew.type=="x") {
+@if (itemNew.type_item=="x") {
   <div class="col mb-3 rounded-4">
     <div class="card card-x">
         <div class="card-body">
           <div class="row">
             <div class="col-md-9 ">
-              <h4 class="card-title">{{itemNew.userPorifle}}</h4>
+              <h4 class="card-title"><i class="bi bi-person-circle x"></i> {{itemNew.userPorifle}}</h4>
               <h5>{{itemNew.nameProfile}} / {{itemNew.datePub}}</h5> 
             </div>
             <div class="col-md-3  text-center">
@@ -56,19 +56,19 @@
   </div>
 } 
 
-@if (itemNew.type=="reddit") {
+@if (itemNew.type_item=="reddit") {
   <div class="col mb-3 rounded-4">
     <div class="card card-reddit">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-8 ">
+            <div class="col-md-9 ">
               <h4 class="card-title">{{itemNew.titlePub}}</h4>
+              <h5><i class="bi bi-person-circle reddit"></i> {{itemNew.nameProfile}} / {{itemNew.datePub}}</h5> 
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-3 text-center">
               <h1><i class="bi bi-reddit"></i></h1>
             </div>
           </div>
-          <h5>{{itemNew.nameProfile}} / {{itemNew.datePub}}</h5> 
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
            
           <div class="row text-white">

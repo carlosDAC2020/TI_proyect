@@ -15,7 +15,7 @@
 
 
 <section class="px-4 py-5 text-center hero-conten capa" style="margin-top: 0px;" id="hero">
-    <h1 class="display-1 fw-bold text-white ">FNK o otro</h1>
+    <h1 class="display-1 fw-bold text-white "><i class="bi bi-shield-fill-check"></i> TrueShield</h1>
     <h2 class="display-6 text-white">Tu Escudo contra las Noticias Falsas</h2>
     <div class="row w-70 mx-auto input-new">
         <div class="col-md-9  p-2">
@@ -59,23 +59,32 @@
       </div>
 </section>
 
-<section class="news-now px-5 py-5 " id="news-now">
+@defer {
+  <section class="news-now px-5 py-5 " id="news-now">
     <h2 class=" fw-bold text-white display-5">Noticias ahora</h2>
     <div class="row  p-1 text-white  row-cols-lg-3">
+      <ng-container *ngFor="let item of allItems; let i = index">
         <app-item-new
-        *ngFor="let item of allItems" 
-        [itemNew]="item"
-        />
+          *ngIf="i < 6"
+          [itemNew]="item"
+        ></app-item-new>
+      </ng-container>      
     </div>
     <div class="row justify-content-center mx-auto w-50 mt-4">
         <div class="col-md-5 text-center">
+          <a href="news-now/">
             <button type="button" class="btn btn-primary btn-see-news">
               <i class="bi bi-plus-lg display-4"></i>
             </button>
+          </a>
         </div>
     </div>
 
 </section>
+} @placeholder (minimum 500ms) {
+  <p>Placeholder content</p>
+}
+
 
 @if (is_ti==false){
   <section class="px-5 py-3 hero text-white"  id="fonts-info">

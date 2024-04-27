@@ -1,17 +1,19 @@
 export class ItemRss {
     id?: number;
-    type:string="rss";
+    type_item:string="rss";
     page?: string;
     datePub?: string;
     title?:string;
     autor?:string;
     interctions?:number;
     bodyText?:string;
+    urlAticle?:string;
+
 }
 
 export class ItemReddit {
     id?: number;
-    type:string="reddit";
+    type_item:string="reddit";
     datePub?: string;
     nameProfile?: string;
     titlePub?: string;
@@ -23,7 +25,7 @@ export class ItemReddit {
 
 export class ItemX{
     id?:number;
-    type:string="x";
+    type_item:string="x";
     datePub?:string;
     userPorifle?:string;
     nameProfile?:string;

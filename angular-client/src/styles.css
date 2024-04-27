@@ -18,15 +18,29 @@
     --reddit-color:#FF4500;
     --rss-color:var(--primary-green)
 }
-
-body {
-    font-family: "Kanit", sans-serif;
-    background-color: black; 
-    margin: 0%;
-    padding: 0%;
+html, body {
+    background-color: black;
+    
 }
 
 
 h1,h2{
     color:white ;
 }
+
+
+/*iconos*/
+.bi-shield-fill-check{
+    color:var(--primary-green);
+}
+
+.bi-reddit, .reddit{
+    color: var(--reddit-color);
+}
+.bi-twitter-x, .x{
+    color: var(--x-color);
+}
+.bi-rss-fill{
+    color:var(--rss-color)
+}
+

@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
 # Configuración de la base de datos
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:navidad02@localhost:5432/FKNDetector"
+SQLALCHEMY_DATABASE_URL = "postgresql://rout:rout@localhost:5432/FKNDetector"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -59,34 +59,44 @@ def buscar_y_guardar_noticias():
     db = SessionLocal()
     for rss_url in db.query(MainRssUrl).all():
         feed = feedparser.parse(rss_url.rss)
+        category= rss_url.category
+        print(category)
+        print("num noticias: de ",rss_url.rss," ",len(feed))
         for entry in feed.entries:
-            # Verificar si la noticia ya existe en la base de datos
-            existing_news = db.query(MainNew).filter_by(title=entry.title).first()
-            if existing_news:
+            # en casi si todo se da bien 
+            try:
+                # Verificar si la noticia ya existe en la base de datos
+                existing_news = db.query(MainNew).filter_by(title=entry.title).first()
+                if existing_news:
+                    continue
+
+                # Crear un nuevo registro de noticia
+                new_news = MainNew(
+                    title=entry.title,
+                    summary=entry.summary,
+                    link_article=entry.link,
+                    publication_date=datetime.now(),
+                    media_id=rss_url.media_id,
+                )
+
+                # Verificar si el feed tiene la fecha de actualización (updated_parsed)
+                if hasattr(feed, 'updated_parsed'):
+                    new_news.publication_date = datetime.fromtimestamp(feed.updated_parsed)
+                    
+                # Verificar si la noticia tiene el cuerpo (body)
+                if hasattr(entry, 'body') and entry.body:
+                    new_news.body = entry.body
+                else:
+                    new_news.body = "No hay cuerpo disponible."
+
+                # Guardar la nueva noticia en la base de datos
+                db.add(new_news)
+                num_noticias_guardadas += 1
+
+            # en caso que falte algo y todo se rompa 
+            except AttributeError or KeyError:
+                print("falto algo")
                 continue
-
-            # Crear un nuevo registro de noticia
-            new_news = MainNew(
-                title=entry.title,
-                summary=entry.summary,
-                link_article=entry.link,
-                publication_date=datetime.now(),
-                media_id=rss_url.media_id
-            )
-
-            # Verificar si el feed tiene la fecha de actualización (updated_parsed)
-            if hasattr(feed, 'updated_parsed'):
-                new_news.publication_date = datetime.fromtimestamp(feed.updated_parsed)
-                
-            # Verificar si la noticia tiene el cuerpo (body)
-            if hasattr(entry, 'body') and entry.body:
-                new_news.body = entry.body
-            else:
-                new_news.body = "No hay cuerpo disponible."
-
-            # Guardar la nueva noticia en la base de datos
-            db.add(new_news)
-            num_noticias_guardadas += 1
 
     # Hacer commit fuera del bucle para mejorar el rendimiento
     db.commit()
@@ -150,3 +160,8 @@ def get_news_by_category():
 async def news_by_category():
     categories_news = get_news_by_category()
     return categories_news
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8001)
