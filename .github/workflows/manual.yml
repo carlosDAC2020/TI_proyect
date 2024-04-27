@@ -25,10 +25,10 @@ jobs:
       
       - name: Build images
         run: |
-          cd FNDetector
+          cd manager-server
           docker build -t cdapdev2020/dj-manager-server:${{ env.IMAGE_TAG }} .
           cd ..
-          cd "API news"
+          cd rss-api
           docker build -t cdapdev2020/rss-api:${{ env.IMAGE_TAG }} .
           cd ..
           cd angular-client
