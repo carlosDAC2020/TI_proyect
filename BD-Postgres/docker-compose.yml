@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_DB: FKNDetector
       POSTGRES_USER: rout
-      POSTGRES_PASSWORD: rout
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
     ports:
       - "5432:5432"
     volumes:
@@ -14,8 +14,8 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: example@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: rout
+      PGADMIN_DEFAULT_EMAIL: trueShiel@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
     ports:
       - "80:80"
     depends_on:

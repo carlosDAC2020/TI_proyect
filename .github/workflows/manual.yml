@@ -22,6 +22,13 @@ jobs:
         env:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         run: echo $DOCKER_TOKEN | docker login --username cdapdev2020 --password-stdin
+
+      - name: Build Docker image DB
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        run: |
+          cd BD-Postgres
+          docker build -t cdapdev2020/db-trueshield:${{ env.IMAGE_TAG }} .
       
       - name: Build images
         run: |
@@ -40,3 +47,4 @@ jobs:
           docker push cdapdev2020/dj-manager-server:${{ env.IMAGE_TAG }}
           docker push cdapdev2020/rss-api:${{ env.IMAGE_TAG }}
           docker push cdapdev2020/angular-clinet:${{ env.IMAGE_TAG }}
+          docker push cdapdev2020/db-trueshield:${{ env.IMAGE_TAG }} 
