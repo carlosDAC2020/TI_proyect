@@ -1,2 +1,6 @@
 venv/
 ../
+.sh
+.terraform/
+variables.sh
+llaves.txt
