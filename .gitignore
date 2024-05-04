@@ -4,3 +4,10 @@ venv/
 .terraform/
 variables.sh
 llaves.txt
+terraform.tfstate.backup
+.terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfvars
+.terraform.lock.hcl
+terraform.tfvars
+create_db.py

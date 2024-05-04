@@ -96,7 +96,7 @@ resource "aws_security_group" "trueshield_sg" {
   }
 }
 
-# Definición de la instancia EC2
+# Definición de la instancia EC2 --------------------
    # server de django
 resource "aws_instance" "manager_server" {
   # ID de la AMI a utilizar
@@ -110,6 +110,11 @@ resource "aws_instance" "manager_server" {
   # Etiqueta de la instancia
   tags = {
     Name = "manager-server"                      
+  }
+
+  
+  provisioner "local-exec" {
+    command = "echo 'server1 ansible_host=${self.public_ip} ansible_ssh_private_key_file=~/.ssh/id_rsa' >> ../ansible/inventory"
   }
 }
     # api rss
@@ -126,6 +131,10 @@ resource "aws_instance" "api_rss" {
   tags = {
     Name = "api-rss"                      
   }
+
+  provisioner "local-exec" {
+   command = "echo 'server2 ansible_host=${self.public_ip} ansible_ssh_private_key_file=~/.#ssh/id_rsa' >> ../ansible/inventory"
+  }
 }
     # cliente angular
 resource "aws_instance" "angular_client" {
@@ -141,16 +150,19 @@ resource "aws_instance" "angular_client" {
   tags = {
     Name = "angular-client"                      
   }
+
+  provisioner "local-exec" {
+    command = "echo 'server3 ansible_host=${self.public_ip} ansible_ssh_private_key_file=~/.ssh/id_rsa' >> ../ansible/inventory"
+  }
+
 }
 
+
+# outputs -------------------------------------------
     # manager server 
 output "public_ip_manager" {
   # IP pública de la instancia
   value = aws_instance.manager_server.public_ip         
-}
-output "private_ip_manager" {
-  # IP privada de la instancia
-  value = aws_instance.manager_server.private_ip        
 }
 
     # api rss
@@ -158,17 +170,14 @@ output "public_ip_api_rss" {
   # IP pública de la instancia
   value = aws_instance.api_rss.public_ip         
 }
-output "private_ip_api_rss" {
-  # IP privada de la instancia
-  value = aws_instance.api_rss.private_ip        
-}
 
     # cliente angular
 output "public_ip_angular_client" {
   # IP pública de la instancia
   value = aws_instance.angular_client.public_ip         
 }
-output "private_ip_angular_client" {
-  # IP privada de la instancia
-  value = aws_instance.angular_client.private_ip        
+
+  # llave de acceso a las inatancias 
+output "ssh_key_name" {
+  value = aws_key_pair.my_key_pair.key_name
 }

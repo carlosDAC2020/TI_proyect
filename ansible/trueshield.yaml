@@ -1,0 +1,68 @@
+- name: Configuracion general
+  hosts: all
+  remote_user: ubuntu
+  gather_facts: no
+  tasks:
+    - name: Actualizar la lista de paquetes en todos los servidores
+      become: yes
+      apt:
+        update_cache: yes
+
+    - name: Instalar Docker en todos los servidores
+      become: yes
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Iniciar el servicio de Docker en todos los servidores
+      become: yes
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Iniciar el servicio de Docker en todos los servidores
+      become: yes
+      command: sudo usermod -aG docker $USER
+
+
+- name: Configuracion para el cliente de angular
+  hosts: server3
+  remote_user: ubuntu
+  gather_facts: no
+  tasks:
+    - name: Descarga de imagen de aplicacion 
+      become: yes
+      command: sudo docker pull cdapdev2020/angular-clinet:20240427232725
+
+    - name: Arrancar el container 
+      become: yes
+      command: sudo docker run -d -p 80:4200 cdapdev2020/angular-clinet:20240427232725
+
+cd - name: Configuracion para el manager server
+  hosts: server1
+  remote_user: ubuntu
+  gather_facts: no
+  tasks:
+    - name: Descarga de imagen de aplicacion   
+      become: yes
+      command: sudo docker pull cdapdev2020/dj-manager-server:20240427232725
+
+    - name: Arrancar el container 
+      become: yes
+      command: sudo docker run -d -p 8000:8000 cdapdev2020/dj-manager-server:20240427232725
+
+- name: Configuracion para el api-rss
+  hosts: server2
+  remote_user: ubuntu
+  gather_facts: no
+  tasks:
+    - name: Descarga de imagen de aplicacion 
+      become: yes
+      command: sudo docker pull cdapdev2020/rss-api:20240427232725
+
+    - name: Arrancar el container 
+      become: yes
+      command: sudo docker run -d -p 8001:8001 cdapdev2020/rss-api:20240427232725
+    
+ 
