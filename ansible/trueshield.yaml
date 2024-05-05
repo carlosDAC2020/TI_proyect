@@ -7,6 +7,7 @@
       become: yes
       apt:
         update_cache: yes
+        
 
     - name: Instalar Docker en todos los servidores
       become: yes
