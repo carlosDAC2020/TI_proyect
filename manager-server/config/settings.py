@@ -90,7 +90,7 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
-        'PORT': '5432', 
+        'PORT': '5432', # puerto expuesto del contenedor
     }
 }
 """
@@ -150,5 +150,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # cliente a conectarse
 CORS_ALLOWED_ORIGINS = [
-    f"http://{os.getenv('HOST_CLIENT')}:80",  
+    f"http://localhost:4200",  
 ]

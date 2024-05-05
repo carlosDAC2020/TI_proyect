@@ -73,14 +73,8 @@ jobs:
     needs: [ deploy ]
     steps:
     - uses: actions/checkout@v4
-    - name: Obtener IPs públicas de las instancias
-      id: get_ips
-      run: |
-        public_ip_manager=$(terraform output public_ip_manager)
-        public_ip_angular_client=$(terraform output public_ip_angular_client)
-        echo "PUBLIC_IP_MANAGER=$public_ip_manager" >> $GITHUB_ENV
-        echo "PUBLIC_IP_ANGULAR_CLIENT=$public_ip_angular_client" >> $GITHUB_ENV
 
+    
     - name: Ejecutar playbook de Ansible
       env:
           DB_USER: ${{ secrets.DB_USER }}
@@ -88,8 +82,7 @@ jobs:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_NAME: ${{ secrets.DB_NAME }}
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
-          PUBLIC_IP_MANAGER: ${{ env.PUBLIC_IP_MANAGER }}
-          PUBLIC_IP_ANGULAR_CLIENT: ${{ env.PUBLIC_IP_ANGULAR_CLIENT }}
+          
       run: |
           cd ansible
           ansible-playbook -i inventory trueshield.yaml

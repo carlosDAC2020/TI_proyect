@@ -50,7 +50,7 @@
 
     - name: Arrancar el container 
       become: yes
-      command: sudo docker run -d -p 8000:8000 -e HOST_CLIENT={ansible_env.PUBLIC_IP_ANGULAR_CLIENT} -e DB_USER={{ ansible_env.DB_USER }} -e DB_PASSWORD={{ ansible_env.DB_PASSWORD }} -e DB_HOST={{ ansible_env.DB_HOST }} -e DB_NAME={{ ansible_env.DB_NAME }} cdapdev2020/dj-manager-server:{{ ansible_env.IMAGE_TAG }}
+      command: sudo docker run -d -p 8000:8000  -e DB_USER={{ ansible_env.DB_USER }} -e DB_PASSWORD={{ ansible_env.DB_PASSWORD }} -e DB_HOST={{ ansible_env.DB_HOST }} -e DB_NAME={{ ansible_env.DB_NAME }} cdapdev2020/dj-manager-server:{{ ansible_env.IMAGE_TAG }}
 
 
 - name: Configuracion para el api-rss
