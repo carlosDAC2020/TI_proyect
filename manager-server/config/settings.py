@@ -150,5 +150,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # cliente a conectarse
 CORS_ALLOWED_ORIGINS = [
-    f"http://localhost:4200",  
+    "http://localhost:4200",  
 ]
