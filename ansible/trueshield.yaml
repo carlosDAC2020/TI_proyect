@@ -25,7 +25,6 @@
       become: yes
       command: sudo usermod -aG docker $USER
 
-
 - name: Configuracion para el manager server
   hosts: server1
   remote_user: ubuntu
@@ -33,11 +32,32 @@
   tasks:
     - name: Descarga de imagen de aplicacion   
       become: yes
-      command: sudo docker pull cdapdev2020/dj-manager-server:20240505020942
-
+      command: sudo docker pull cdapdev2020/dj-manager-server:{{ ansible_env.IMAGE_TAG }}
     - name: Arrancar el container 
       become: yes
-      command: sudo docker run -d -p 80:8000 -e HHOST_IP=100.26.34.38  -e DB_USER=postgres -e DB_PASSWORD=j2uPsPyhcqb3tPyNdrbu -e DB_HOST=trueshield.cl0mwigse4do.us-east-1.rds.amazonaws.com -e DB_NAME=FKNDetector cdapdev2020/dj-manager-server:20240505020942
+      command: sudo docker run -d -p 8000:8000  -e DB_USER={{ ansible_env.DB_USER }} -e DB_PASSWORD={{ ansible_env.DB_PASSWORD }} -e DB_HOST={{ ansible_env.DB_HOST }} -e DB_NAME={{ ansible_env.DB_NAME }} cdapdev2020/dj-manager-server:{{ ansible_env.IMAGE_TAG }}
 
+- name: Configuracion para el api-rss
+  hosts: server2
+  remote_user: ubuntu
+  gather_facts: no
+  tasks:
+    - name: Descarga de imagen de aplicacion 
+      become: yes
+      command: sudo docker pull cdapdev2020/rss-api:{{ ansible_env.IMAGE_TAG }}
+    - name: Arrancar el container 
+      become: yes
+      command: sudo docker run -d -p 8001:8001 -e DB_USER={{ ansible_env.DB_USER }} -e DB_PASSWORD={{ ansible_env.DB_PASSWORD }} -e DB_HOST={{ ansible_env.DB_HOST }} -e DB_NAME={{ ansible_env.DB_NAME }} cdapdev2020/rss-api:{{ ansible_env.IMAGE_TAG }}
 
+- name: Configuracion para el cliente de angular
+  hosts: server3
+  remote_user: ubuntu
+  gather_facts: no
+  tasks:
+    - name: Descarga de imagen de aplicacion 
+      become: yes
+      command: sudo docker pull cdapdev2020/angular-clinet:{{ ansible_env.IMAGE_TAG }}
+    - name: Arrancar el container 
+      become: yes
+      command: sudo docker run -d -p 80:4200 cdapdev2020/angular-clinet:{{ ansible_env.IMAGE_TAG }}
  
