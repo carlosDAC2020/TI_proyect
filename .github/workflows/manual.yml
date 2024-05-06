@@ -72,6 +72,9 @@ jobs:
           terraform init -input=false
           terraform apply -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" -auto-approve
           cd ..
+          
+          # Esperar 5 minutos
+          sleep 300
 
           cd ansible
           ansible-playbook -i inventory trueshield.yaml
