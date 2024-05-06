@@ -81,4 +81,3 @@ jobs:
 
           cd ansible
           ansible-playbook -i inventory trueshield.yaml
-  
