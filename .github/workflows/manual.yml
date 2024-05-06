@@ -76,7 +76,6 @@ jobs:
           # Esperar 3 minutos en lo q las inatanxcias de EC2 arrancan completamente 
           #sleep 120
 
-          
           cd ansible
           # host guardados
           cat inventory
