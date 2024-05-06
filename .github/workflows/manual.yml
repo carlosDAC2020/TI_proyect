@@ -76,6 +76,9 @@ jobs:
           # Esperar 5 minutos
           sleep 300
 
+          # host guardados
+          cart inventory
+
           cd ansible
           ansible-playbook -i inventory trueshield.yaml
   
