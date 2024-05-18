@@ -85,4 +85,4 @@ jobs:
           export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           export DB_HOST=${{ secrets.DB_HOST }}
           export DB_NAME=${{ secrets.DB_NAME }}
-          ansible-playbook -i inventory trueshield.yaml -vvv
+          ansible-playbook -i inventory trueshield.yaml 
