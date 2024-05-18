@@ -133,7 +133,7 @@ resource "aws_instance" "api_rss" {
   }
 
   provisioner "local-exec" {
-   command = "echo 'server2 ansible_host=${self.public_ip} ansible_ssh_private_key_file=~/.#ssh/id_rsa' >> ../ansible/inventory"
+   command = "echo 'server2 ansible_host=${self.public_ip} ansible_ssh_private_key_file=~/.ssh/id_rsa' >> ../ansible/inventory"
   }
 }
     # cliente angular
