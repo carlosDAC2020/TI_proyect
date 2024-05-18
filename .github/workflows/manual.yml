@@ -43,7 +43,6 @@ jobs:
           docker push cdapdev2020/dj-manager-server:${{ steps.date.outputs.date }}
           docker push cdapdev2020/rss-api:${{ steps.date.outputs.date }}
           docker push cdapdev2020/angular-clinet:${{ steps.date.outputs.date }}
-          docker push cdapdev2020/db-trueshield:${{ steps.date.outputs.date }} 
 
   deploy:
     runs-on: ubuntu-latest
