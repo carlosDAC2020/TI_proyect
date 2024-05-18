@@ -39,14 +39,7 @@
         DB_HOST: "{{ lookup('env', 'DB_HOST') }}"
         DB_NAME: "{{ lookup('env', 'DB_NAME') }}"
 
-    - name: Verificar variables de entorno
-      debug:
-        msg:
-          - "DB_USER: {{ ansible_env.DB_USER }}"
-          - "DB_PASSWORD: {{ ansible_env.DB_PASSWORD }}"
-          - "DB_HOST: {{ ansible_env.DB_HOST }}"
-          - "DB_NAME: {{ ansible_env.DB_NAME }}"
-          - "IMAGE_TAG: {{ ansible_env.IMAGE_TAG }}"
+    
 
     - name: Descarga de imagen de aplicacion
       become: yes
@@ -69,14 +62,7 @@
         DB_HOST: "{{ lookup('env', 'DB_HOST') }}"
         DB_NAME: "{{ lookup('env', 'DB_NAME') }}"
 
-    - name: Verificar variables de entorno
-      debug:
-        msg:
-          - "DB_USER: {{ ansible_env.DB_USER }}"
-          - "DB_PASSWORD: {{ ansible_env.DB_PASSWORD }}"
-          - "DB_HOST: {{ ansible_env.DB_HOST }}"
-          - "DB_NAME: {{ ansible_env.DB_NAME }}"
-          - "IMAGE_TAG: {{ ansible_env.IMAGE_TAG }}"
+   
 
     - name: Descarga de imagen de aplicacion 
       become: yes
@@ -95,10 +81,6 @@
       set_fact:
         IMAGE_TAG: "{{ lookup('env', 'IMAGE_TAG') }}"
     
-    - name: Verificar variables de entorno
-      debug:
-        msg:
-          - "IMAGE_TAG: {{ ansible_env.IMAGE_TAG }}"
 
     - name: Descarga de imagen de aplicacion 
       become: yes
