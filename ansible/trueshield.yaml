@@ -1,3 +1,4 @@
+---
 - name: Configuracion general
   hosts: all
   remote_user: ubuntu
@@ -21,7 +22,7 @@
         state: started
         enabled: yes
 
-    - name: Iniciar el servicio de Docker en todos los servidores
+    - name: Dar permisos de ejecucion a docker 
       become: yes
       command: sudo usermod -aG docker $USER
 
@@ -30,34 +31,56 @@
   remote_user: ubuntu
   gather_facts: no
   tasks:
-    - name: Descarga de imagen de aplicacion   
+    - name: Definir variables de entorno
+      set_fact:
+        IMAGE_TAG: "{{ lookup('env', 'IMAGE_TAG') }}"
+        DB_USER: "{{ lookup('env', 'DB_USER') }}"
+        DB_PASSWORD: "{{ lookup('env', 'DB_PASSWORD') }}"
+        DB_HOST: "{{ lookup('env', 'DB_HOST') }}"
+        DB_NAME: "{{ lookup('env', 'DB_NAME') }}"
+
+    - name: Descarga de imagen de aplicacion
       become: yes
-      command: sudo docker pull cdapdev2020/dj-manager-server:{{ ansible_env.IMAGE_TAG }}
+      command: sudo docker pull cdapdev2020/dj-manager-server:{{ IMAGE_TAG }}
+
     - name: Arrancar el container 
       become: yes
-      command: sudo docker run -d -p 8000:8000  -e DB_USER={{ ansible_env.DB_USER }} -e DB_PASSWORD={{ ansible_env.DB_PASSWORD }} -e DB_HOST={{ ansible_env.DB_HOST }} -e DB_NAME={{ ansible_env.DB_NAME }} cdapdev2020/dj-manager-server:{{ ansible_env.IMAGE_TAG }}
+      command: sudo docker run -d -p 8000:8000 -e DB_USER={{ DB_USER }} -e DB_PASSWORD={{ DB_PASSWORD }} -e DB_HOST={{ DB_HOST }} -e DB_NAME={{ DB_NAME }} cdapdev2020/dj-manager-server:{{ IMAGE_TAG }}
 
 - name: Configuracion para el api-rss
   hosts: server2
   remote_user: ubuntu
   gather_facts: no
   tasks:
+    - name: Definir variables de entorno
+      set_fact:
+        IMAGE_TAG: "{{ lookup('env', 'IMAGE_TAG') }}"
+        DB_USER: "{{ lookup('env', 'DB_USER') }}"
+        DB_PASSWORD: "{{ lookup('env', 'DB_PASSWORD') }}"
+        DB_HOST: "{{ lookup('env', 'DB_HOST') }}"
+        DB_NAME: "{{ lookup('env', 'DB_NAME') }}"
+
     - name: Descarga de imagen de aplicacion 
       become: yes
-      command: sudo docker pull cdapdev2020/rss-api:{{ ansible_env.IMAGE_TAG }}
+      command: sudo docker pull cdapdev2020/rss-api:{{ IMAGE_TAG }}
+
     - name: Arrancar el container 
       become: yes
-      command: sudo docker run -d -p 8001:8001 -e DB_USER={{ ansible_env.DB_USER }} -e DB_PASSWORD={{ ansible_env.DB_PASSWORD }} -e DB_HOST={{ ansible_env.DB_HOST }} -e DB_NAME={{ ansible_env.DB_NAME }} cdapdev2020/rss-api:{{ ansible_env.IMAGE_TAG }}
+      command: sudo docker run -d -p 8001:8001 -e DB_USER={{ DB_USER }} -e DB_PASSWORD={{ DB_PASSWORD }} -e DB_HOST={{ DB_HOST }} -e DB_NAME={{ DB_NAME }} cdapdev2020/rss-api:{{ IMAGE_TAG }}
 
 - name: Configuracion para el cliente de angular
   hosts: server3
   remote_user: ubuntu
   gather_facts: no
   tasks:
+    - name: Definir variables de entorno
+      set_fact:
+        IMAGE_TAG: "{{ lookup('env', 'IMAGE_TAG') }}"
+
     - name: Descarga de imagen de aplicacion 
       become: yes
-      command: sudo docker pull cdapdev2020/angular-clinet:{{ ansible_env.IMAGE_TAG }}
+      command: sudo docker pull cdapdev2020/angular-clinet:{{ IMAGE_TAG }}
+
     - name: Arrancar el container 
       become: yes
-      command: sudo docker run -d -p 80:4200 cdapdev2020/angular-clinet:{{ ansible_env.IMAGE_TAG }}
- 
+      command: sudo docker run -d -p 80:4200 cdapdev2020/angular-clinet:{{ IMAGE_TAG }}
