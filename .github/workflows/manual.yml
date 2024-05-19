@@ -60,12 +60,18 @@ jobs:
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_NAME: ${{ secrets.DB_NAME }}
-        IMAGE_TAG: ${{ needs.build.outputs.tag_id }} # Adjusted this line
+        IMAGE_TAG: ${{ needs.build.outputs.tag_id }} 
       run: |
           cd terraform 
           set -e 
           terraform init -input=false
           terraform apply -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" -auto-approve
+
+          # Obtener las IPs públicas de las instancias creadas
+          export MANAGER_IP=$(terraform output -raw public_ip_manager)
+          export API_RSS_IP=$(terraform output -raw public_ip_api_rss)
+          export ANGULAR_CLIENT_IP=$(terraform output -raw public_ip_angular_client)
+          
           cd ..
           
           # Esperar 3 minutos en lo q las inatanxcias de EC2 arrancan completamente 
@@ -80,5 +86,4 @@ jobs:
           export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           export DB_HOST=${{ secrets.DB_HOST }}
           export DB_NAME=${{ secrets.DB_NAME }}
-          env
           ansible-playbook -i inventory trueshield.yaml 

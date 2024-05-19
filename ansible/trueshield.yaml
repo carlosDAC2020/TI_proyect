@@ -38,6 +38,7 @@
         DB_PASSWORD: "{{ lookup('env', 'DB_PASSWORD') }}"
         DB_HOST: "{{ lookup('env', 'DB_HOST') }}"
         DB_NAME: "{{ lookup('env', 'DB_NAME') }}"
+        MANAGER_IP: "{{ lookup('env', 'MANAGER_IP') }}"
 
     
 
@@ -47,7 +48,7 @@
 
     - name: Arrancar el container 
       become: yes
-      command: sudo docker run -d -p 80:8000 -e DB_USER={{ DB_USER }} -e DB_PASSWORD={{ DB_PASSWORD }} -e DB_HOST={{ DB_HOST }} -e DB_NAME={{ DB_NAME }} cdapdev2020/dj-manager-server:{{ IMAGE_TAG }}
+      command: sudo docker run -d -p 80:8000 -e HOST_IP={{MANAGER_IP}} -e DB_USER={{ DB_USER }} -e DB_PASSWORD={{ DB_PASSWORD }} -e DB_HOST={{ DB_HOST }} -e DB_NAME={{ DB_NAME }} cdapdev2020/dj-manager-server:{{ IMAGE_TAG }}
 
 - name: Configuracion para el api-rss
   hosts: server2

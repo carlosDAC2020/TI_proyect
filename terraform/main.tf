@@ -36,34 +36,7 @@ resource "aws_security_group" "trueshield_sg" {
   description = "Security group for instances of ti proyect"  
 
   # Reglas de entrada (permisos de acceso a la instancia)
-
-      # manager server
-  ingress {
-    # Permitir acceso desde cualquier IP (para solicitudes HTTP)
-    from_port   = 8000
-    to_port     = 8000
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]            
-  }
-
-      # api-rss
-  ingress {
-    # Permitir acceso desde cualquier IP (para solicitudes HTTP)
-    from_port   = 8001
-    to_port     = 8001
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]            
-  }
-
-      # angular client
-  ingress {
-    # Permitir acceso desde cualquier IP (para solicitudes HTTP)
-    from_port   = 4200
-    to_port     = 4200
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]            
-  }
-
+    
   ingress {
     # Permitir acceso desde cualquier IP (para conexiones SSH)
     from_port   = 22
